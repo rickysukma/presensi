@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Generation Time: Mar 14, 2019 at 01:10 PM
--- Server version: 10.3.12-MariaDB
--- PHP Version: 7.2.14
+-- Host: 127.0.0.1:3306
+-- Waktu pembuatan: 08 Des 2019 pada 21.44
+-- Versi server: 10.3.14-MariaDB
+-- Versi PHP: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,77 +25,87 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mahasiswa`
+-- Struktur dari tabel `mesin`
 --
 
-DROP TABLE IF EXISTS `mahasiswa`;
-CREATE TABLE IF NOT EXISTS `mahasiswa` (
+DROP TABLE IF EXISTS `mesin`;
+CREATE TABLE IF NOT EXISTS `mesin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(32) NOT NULL,
-  `nim` varchar(32) NOT NULL,
+  `sn` varchar(25) NOT NULL,
+  `nama_mesin` varchar(255) NOT NULL,
+  `ip` varchar(25) NOT NULL,
+  `comkey` varchar(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `mahasiswa`
+-- Dumping data untuk tabel `mesin`
 --
 
-INSERT INTO `mahasiswa` (`id`, `nama`, `nim`) VALUES
-(1, 'Ahmad Zainudin', '1610100'),
-(6, 'Ririn', '17002323');
+INSERT INTO `mesin` (`id`, `sn`, `nama_mesin`, `ip`, `comkey`) VALUES
+(1, 'bwx454235', 'presensi', '192.168.1.201', '1'),
+(2, 'BWXP191562141', 'Presensi 2', '192.168.1.205', '12343');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `makul`
+-- Struktur dari tabel `rekap_presensi`
 --
 
-DROP TABLE IF EXISTS `makul`;
-CREATE TABLE IF NOT EXISTS `makul` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `makul` varchar(32) NOT NULL,
-  `sks` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `rekap_presensi`;
+CREATE TABLE IF NOT EXISTS `rekap_presensi` (
+  `id_rekap` int(11) NOT NULL AUTO_INCREMENT,
+  `id_siswa` int(11) NOT NULL,
+  `waktu` datetime NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id_rekap`)
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `makul`
+-- Dumping data untuk tabel `rekap_presensi`
 --
 
-INSERT INTO `makul` (`id`, `makul`, `sks`) VALUES
-(1, 'Pengantar Jaringan', 2),
-(4, 'E-Commers', 4),
-(3, 'Keamanan Jaringan', 4),
-(5, 'Pemrograman Web', 4);
+INSERT INTO `rekap_presensi` (`id_rekap`, `id_siswa`, `waktu`, `status`) VALUES
+(1, 2, '2019-11-21 21:51:24', 0),
+(2, 1, '2019-11-25 13:32:06', 0),
+(3, 1, '2019-11-25 13:36:31', 0),
+(4, 1234, '2019-11-25 13:38:55', 0),
+(5, 1, '2019-11-25 17:31:12', 1),
+(6, 1234, '2019-11-25 17:34:40', 1),
+(7, 1, '2019-11-25 17:34:47', 1),
+(8, 1, '2019-11-27 12:21:03', 0),
+(9, 1, '2019-12-07 11:02:21', 0),
+(10, 1234, '2019-12-07 11:02:24', 0),
+(11, 1, '2019-12-09 09:52:57', 0),
+(12, 1234, '2019-12-09 09:53:01', 0),
+(13, 2, '2019-11-21 21:51:24', 0),
+(14, 1, '2019-11-25 13:32:06', 0),
+(15, 1, '2019-11-25 13:36:31', 0),
+(16, 1234, '2019-11-25 13:38:55', 0),
+(17, 1, '2019-11-25 17:31:12', 1),
+(18, 1234, '2019-11-25 17:34:40', 1),
+(19, 1, '2019-11-25 17:34:47', 1),
+(20, 1, '2019-11-27 12:21:03', 0),
+(21, 1, '2019-12-07 11:02:21', 0),
+(22, 1234, '2019-12-07 11:02:24', 0),
+(23, 1, '2019-12-09 09:52:57', 0),
+(24, 1234, '2019-12-09 09:53:01', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nilai`
+-- Struktur dari tabel `siswa`
 --
 
-DROP TABLE IF EXISTS `nilai`;
-CREATE TABLE IF NOT EXISTS `nilai` (
-  `id_nilai` int(11) NOT NULL AUTO_INCREMENT,
-  `id_makul` int(11) NOT NULL,
-  `id_mahasiswa` int(11) NOT NULL,
-  `nilai` int(11) NOT NULL,
-  PRIMARY KEY (`id_nilai`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `nilai`
---
-
-INSERT INTO `nilai` (`id_nilai`, `id_makul`, `id_mahasiswa`, `nilai`) VALUES
-(1, 1, 1, 80),
-(2, 2, 1, 89),
-(3, 2, 6, 90),
-(5, 3, 1, 78),
-(21, 3, 6, 90),
-(20, 4, 6, 90),
-(22, 5, 1, 50),
-(14, 4, 1, 78);
+DROP TABLE IF EXISTS `siswa`;
+CREATE TABLE IF NOT EXISTS `siswa` (
+  `id_siswa` int(11) NOT NULL,
+  `nama_siswa` varchar(255) NOT NULL,
+  `fingerprint` varchar(1000) DEFAULT NULL,
+  `rombel` int(11) NOT NULL,
+  `id_mesin` int(11) NOT NULL,
+  PRIMARY KEY (`id_siswa`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
