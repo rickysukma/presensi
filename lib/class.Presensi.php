@@ -13,8 +13,8 @@
 
 class Presensi
 {
-	public $ip = "0.0.0.0"; //ip device
-	public $key = 0; //key device
+	// public $ip = "192.168.1.201"; //ip device
+	// public $key = 1; //key device
 	
 	public function getDataPresensi(){
 		//koneksi ke port mesin fingerprint yang ada
