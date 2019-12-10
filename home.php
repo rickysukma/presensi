@@ -2,6 +2,12 @@
   $mysqli = new mysqli('localhost','root','','crud');
   $sql= "SELECT * FROM mesin"; // Menampung perintah SQL ke variabel ‘sql’
   $hasil = $mysqli->query($sql);
+
+$token = $_SESSION['token'];
+$url = "http://sims.imersa.co.id/api/presensi?token=".$token."&siswa";
+$url = file_get_contents($url);
+$siswa = json_decode($url,true);
+
 ?>
 <!-- Button tambah -->
 <!-- Table Mesin -->
