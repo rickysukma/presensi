@@ -46,16 +46,3 @@ $data = $presensi->getDataPresensi();
         <!-- <a href="?page=presensi&ip=<?= $ip ?>&rekap" class="btn btn-primary" style="float:right; margin-bottom: 10px">Rekap Presensi</a> -->
     </div>
 </div>
-
-<script>
-    $('#rekap').on('click', function(){
-        $.ajax({
-            type : "POST",
-            url : "controller/siswa_tidakHadir.php",
-            dataType : "json",
-            success : function(data){
-                
-            }
-        })
-    })
-</script>
