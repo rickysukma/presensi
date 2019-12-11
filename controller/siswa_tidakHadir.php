@@ -1,5 +1,6 @@
 <?php 	
 include_once "config.php";
+$token = $_SESSION['token'];
 
 function postData($url, $ampas){
     $ch = curl_init($url);
@@ -27,7 +28,7 @@ if (mysqli_num_rows($sqlSiswa) > 0) {
                     'id_mapel'=> $id_mapel,
                     'presensi' => $presensi ];
         
-        $url = 'http://sims.imersa.co.id/api/presensi?store';
+        $url = 'http://sims.imersa.co.id/api/presensi?token=' . $token . '&store';
         $test = postData($url, $data);
         var_dump($test);
     }
