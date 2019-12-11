@@ -111,6 +111,9 @@ if (!$_SESSION['token']) {
                         if ($_GET['page'] == 'rekap_presensi') {
                             require_once 'controller/rekap_presensi.php';
                         }
+                        if($_GET['page'] == 'store'){
+                            require_once 'controller/siswa_tidakHadir.php';
+                        }
                     } else {
                         require_once 'home.php';
                     }

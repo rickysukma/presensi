@@ -27,6 +27,11 @@ if (isset($_POST['rekap'])) {
             }
         }
     }
+
+    include_once 'siswa_tidakHadir.php';
+
+
+
 }
 
 echo '</br>
