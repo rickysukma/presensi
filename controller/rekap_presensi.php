@@ -50,10 +50,10 @@ if (isset($_POST['rekap'])) {
     if (mysqli_num_rows($sqlSiswa) > 0) {
         while ($dataSiswa = mysqli_fetch_assoc($sqlSiswa)) {
             $id_siswa = $dataSiswa['id_siswa'];
-            $id_mapel = 1;
+            $id_rombel = $dataSiswa['rombel'];
             $presensi = "bolos";
             $data = [   'id_siswa' => $id_siswa,
-                        'id_mapel'=> $id_mapel,
+                        'id_rombel'=> $id_rombel,
                         'presensi' => $presensi ];
             
             $url = 'http://sims.imersa.co.id/api/presensi?token=' . $token . '&store';
